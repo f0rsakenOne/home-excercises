@@ -9,15 +9,22 @@ public class NumberSquare {
         int min = in.nextInt();
         System.out.print("Max? ");
         int max = in.nextInt();
-        for (int i = min;i<=max;i++){
-            int k = i;
-            for (int j = min;j<=max;j++){
-                System.out.print(k);
-                if (k==max){
-                    k=min;
-                } else  k++;
-            }
-            System.out.println();
-        }
+        System.out.println(createNumberSquare(min,max));
     }
+    private static String createNumberSquare(int min, int max){
+        StringBuilder numSquare = new StringBuilder();
+        for (int i = min; i <= max; i++) {
+            for (int j = min; j <= max; j++) {
+                numSquare.append(i);
+                if (i == max) {
+                    i = min;
+                } else {
+                    i++;
+                }
+            }
+            numSquare.append("\n");
+        }
+        return numSquare.toString();
+    }
+
 }

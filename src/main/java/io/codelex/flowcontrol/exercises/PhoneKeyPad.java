@@ -6,11 +6,9 @@ public class PhoneKeyPad {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.print("Your string : ");
-        if (in.hasNextInt()||in.hasNextDouble()){
-            System.out.print("It is no a string :(");
-        } else {
-            String phoneLetters = in.nextLine().toLowerCase();
-            for (int i = 0; i < phoneLetters.length();i++){
+        String phoneLetters = in.nextLine().toLowerCase();
+        if (phoneLetters.matches("[a-z|#*\\s]*")) {
+            for (int i = 0; i < phoneLetters.length(); i++) {
                 char letter = phoneLetters.charAt(i);
                 switch (letter) {
                     case 'a', 'b', 'c' -> System.out.print(2);
@@ -27,6 +25,8 @@ public class PhoneKeyPad {
                     default -> System.out.print(1);
                 }
             }
+        } else {
+            System.out.print("It is no a string :(");
         }
     }
 }
