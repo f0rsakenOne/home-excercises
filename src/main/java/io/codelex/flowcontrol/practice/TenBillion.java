@@ -3,28 +3,21 @@ package io.codelex.flowcontrol.practice;
 import java.util.Scanner;
 
 public class TenBillion {
-
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.print("Input an integer number less than ten billion: ");
-
-
-
-
         if (in.hasNextLong()) {
             long n = in.nextLong();
-            if (n<0) {
+            if (n < 0) {
                 n *= -1;
             }
-            if (n>=Math.pow(10,10)) {
+            if (n >= Math.pow(10, 10)) {
                 System.out.println("Number is greater or equals 10,000,000,000!");
             } else {
-                int digits ;
-                if (n<10) {
+                int digits;
+                if (n < 10) {
                     digits = 1;
-                }
-                else if (n<100) {
+                } else if (n < 100) {
                     digits = 2;
                 } else if (n < 1000) {
                     digits = 3;
@@ -40,7 +33,7 @@ public class TenBillion {
                     digits = 8;
                 } else if (n < 1000000000) {
                     digits = 9;
-                } else  {
+                } else {
                     digits = 10;
                 }
                 System.out.println("Number of digits in the number: " + digits);
