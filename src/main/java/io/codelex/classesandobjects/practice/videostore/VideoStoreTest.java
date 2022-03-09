@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class VideoStoreTest {
     private static final int COUNT_OF_MOVIES = 3;
-
+    static VideoStore blockbuster = new VideoStore();
     public static void main(String[] args) {
         final Scanner keyboard = new Scanner(System.in);
 
@@ -14,6 +14,8 @@ public class VideoStoreTest {
             System.out.println("Choose 1 to fill video store");
             System.out.println("Choose 2 to rent video (as user)");
             System.out.println("Choose 3 to return video (as user)");
+            System.out.println("Choose 4 to list all video (as user)");
+            System.out.println("Choose 5 to rate a video (as user)");
 
             int n = keyboard.nextInt();
 
@@ -29,6 +31,12 @@ public class VideoStoreTest {
                 case 3:
                     returnVideo(keyboard);
                     break;
+                case 4:
+                    listInventory(keyboard);
+                    break;
+                case 5:
+                    rateVideo(keyboard);
+                    break;
                 default:
                     break;
             }
@@ -42,15 +50,29 @@ public class VideoStoreTest {
             String movieName = scanner.next();
             System.out.println("Enter rating");
             int rating = scanner.nextInt();
-            //todo - add video
+            blockbuster.addToInventory(new Video(movieName,rating));
         }
     }
 
     private static void rentVideo(Scanner scanner) {
-        //todo - rent video
+        System.out.println("Enter movie to rent");
+        String movieName = scanner.next();
+        blockbuster.checkOutVideo(movieName);
     }
 
     private static void returnVideo(Scanner scanner) {
-        //todo - return video
+        System.out.println("Enter movie to return");
+        String movieName = scanner.next();
+        blockbuster.returnVideo(movieName);
+    }
+    private static void listInventory(Scanner scanner) {
+        blockbuster.listInventory();
+    }
+    private static void rateVideo(Scanner scanner) {
+        System.out.println("Enter movie to rate");
+        String movieName = scanner.next();
+        System.out.println("Enter rating");
+        int rating = scanner.nextInt();
+        blockbuster.takeRating(movieName,rating);
     }
 }
