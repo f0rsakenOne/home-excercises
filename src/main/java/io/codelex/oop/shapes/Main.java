@@ -7,7 +7,7 @@ public class Main {
         System.out.println("Rectangle perimeter : " + abcd.getPerimeter());
         System.out.println("Rectangle area : " + abcd.getArea());
 
-        Triangle xyz = new Triangle(3, 5);
+        Triangle xyz = new Triangle(3, 5, 8);
         System.out.println("Triangle has " + xyz.getNumSides() + " sides.");
         System.out.println("Triangle perimeter : " + xyz.getPerimeter());
         System.out.println("Triangle area : " + xyz.getArea());
