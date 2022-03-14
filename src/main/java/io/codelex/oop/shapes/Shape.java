@@ -1,6 +1,6 @@
 package io.codelex.oop.shapes;
 
-public abstract class Shape {
+abstract class Shape {
 
     private int numSides;
 
