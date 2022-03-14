@@ -14,13 +14,13 @@ public class Exercise2 {
         System.out.println("Please enter a max number");
         int maxNumber = input.nextInt();
 
-        int[] myArray = new int[maxNumber];
+        int[] myArray = new int[maxNumber - minNumber + 1];
         int sum = 0;
 
 
-        for (int i = 0; i <  maxNumber;i++) {
-        myArray[i] = minNumber+i;
-        sum+=myArray[i];
+        for (int i = 0; i < myArray.length; i++) {
+            myArray[i] = i + minNumber;
+            sum += myArray[i];
         }
 
         System.out.println("The sum is " + sum);
