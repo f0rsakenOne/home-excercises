@@ -6,22 +6,21 @@ public class Date {
     private int year;
 
     public Date(int day, int month, int year) {
-        if (day > 0 && day <= 31) {
+        if (isValidDay(day)) {
             this.day = day;
         } else {
             this.day = 1;
         }
-        if (month > 0 && month <= 12) {
+        if (isValidMonth(month)) {
             this.month = month;
         } else {
             this.month = 1;
         }
-        if (year > 0) {
+        if (isValidYear(year)) {
             this.year = year;
         } else {
             this.year = 1970;
         }
-
     }
 
     public int getDay() {
@@ -29,11 +28,15 @@ public class Date {
     }
 
     public void setDay(int day) {
-        if (day > 0 && day <= 31) {
+        if (isValidDay(day)) {
             this.day = day;
         } else {
             this.day = 1;
         }
+    }
+
+    private boolean isValidDay(int day) {
+        return day > 0 && day <= 31;
     }
 
     public int getMonth() {
@@ -41,11 +44,15 @@ public class Date {
     }
 
     public void setMonth(int month) {
-        if (month > 0 && month <= 12) {
+        if (isValidMonth(month)) {
             this.month = month;
         } else {
             this.month = 1;
         }
+    }
+
+    private boolean isValidMonth(int month) {
+        return month > 0 && month <= 12;
     }
 
     public int getYear() {
@@ -53,11 +60,15 @@ public class Date {
     }
 
     public void setYear(int year) {
-        if (year > 0) {
+        if (isValidYear(year)) {
             this.year = year;
         } else {
             this.year = 1970;
         }
+    }
+
+    private boolean isValidYear(int year) {
+        return year > 0;
     }
 
     public void displayDate() {
