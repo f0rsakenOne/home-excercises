@@ -5,20 +5,19 @@ public enum Runner {
     INTERMEDIATE(30, 59),
     ADVANCED(0, 29);
 
-    private int minTime;
-    private int maxTime;
+    private double minTime;
+    private double maxTime;
 
-    Runner(int minTime, int maxTime) {
+    Runner(double minTime, double maxTime) {
         this.minTime = minTime;
         this.maxTime = maxTime;
     }
 
-    static Runner getFitnesLevel(int time) {
+    static Runner getFitnesLevel(double time) {
         Runner runner = BEGINNER;
-
-        if (time >= 30 && time <= 59) {
+        if (time >= INTERMEDIATE.minTime && time <= INTERMEDIATE.maxTime) {
             runner = INTERMEDIATE;
-        } else if (time > 0 && time <= 29) {
+        } else if (time > ADVANCED.minTime && time <= ADVANCED.maxTime) {
             runner = ADVANCED;
         }
         return runner;
