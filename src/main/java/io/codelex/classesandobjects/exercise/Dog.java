@@ -1,19 +1,21 @@
 package io.codelex.classesandobjects.exercise;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class Dog {
     private String name;
-    private String sex;
+    private Gender sex;
     private String nameOfFather;
     private String nameOfMother;
 
-    public Dog(String name, String sex) {
+    public Dog(String name, Gender sex) {
         this.name = name;
         this.sex = sex;
     }
 
-    public Dog(String name, String sex, String nameOfFather, String nameOfMother) {
+    public Dog(String name, Gender sex, String nameOfFather, String nameOfMother) {
         this.name = name;
         this.sex = sex;
         this.nameOfFather = nameOfFather;
@@ -21,13 +23,16 @@ public class Dog {
     }
 
     public String getNameOfFather() {
-        String father;
-        father = Objects.requireNonNullElse(this.nameOfFather, "Unknown");
-        return father;
+        return Objects.requireNonNullElse(this.nameOfFather, "Unknown");
     }
 
     public boolean hasSameMotherAs(Dog otherDog) {
-        return Objects.equals(this.nameOfMother, otherDog.nameOfMother);
+        if (this.nameOfMother == null) {
+            return false;
+        } else {
+            return Objects.equals(this.nameOfMother, otherDog.nameOfMother);
+        }
+
     }
 
     @Override
@@ -39,27 +44,23 @@ public class Dog {
     }
 
     public static void main(String[] args) {
-        Dog max = new Dog("Max", "male", "Rocky", "Lady");
-        Dog rocky = new Dog("Rocky", "male", "Sam", "Molly");
-        Dog sparky = new Dog("Sparky", "male");
-        Dog buster = new Dog("Buster", "male", "Sparky", "Lady");
-        Dog sam = new Dog("Sam", "male");
-        Dog lady = new Dog("Lady", "female");
-        Dog molly = new Dog("Molly", "female");
-        Dog coco = new Dog("Coco", "female", "Buster", "Molly");
-
-        System.out.println(max.toString());
-        System.out.println(rocky.toString());
-        System.out.println(sparky.toString());
-        System.out.println(buster.toString());
-        System.out.println(sam.toString());
-        System.out.println(lady.toString());
-        System.out.println(molly.toString());
-        System.out.println(coco.toString());
+        Dog max = new Dog("Max", Gender.MALE, "Rocky", "Lady");
+        Dog rocky = new Dog("Rocky", Gender.MALE, "Sam", "Molly");
+        Dog sparky = new Dog("Sparky", Gender.MALE);
+        Dog buster = new Dog("Buster", Gender.MALE, "Sparky", "Lady");
+        Dog sam = new Dog("Sam", Gender.MALE);
+        Dog lady = new Dog("Lady", Gender.FEMALE);
+        Dog molly = new Dog("Molly", Gender.FEMALE);
+        Dog coco = new Dog("Coco", Gender.FEMALE, "Buster", "Molly");
+        List<Dog> dogList = Arrays.asList(max, rocky, sparky, buster, sam, lady, molly, coco);
+        for (Dog i : dogList) {
+            System.out.println(i);
+        }
         System.out.println("=-=-=-=-=-=-=-=-=-=");
         System.out.println(coco.getNameOfFather());
         System.out.println(sparky.getNameOfFather());
         System.out.println("=-=-=-=-=-=-=-=-=-=");
         System.out.println(coco.hasSameMotherAs(rocky));
+        System.out.println(molly.hasSameMotherAs(sam));
     }
 }

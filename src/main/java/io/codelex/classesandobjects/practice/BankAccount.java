@@ -23,17 +23,17 @@ public class BankAccount {
     public final void withdraw(double amount) {
         this.balance -= amount;
     }
-    public String toString(){
-        String str = "";
-        if (this.balance<0){
-            str = this.name + ",-$"+df.format(this.balance*-1);
+
+    public String toString() {
+        if (this.balance < 0) {
+            return this.name + ",-$" + df.format(this.balance * -1);
         } else {
-           str =  this.name + ",$"+df.format(this.balance);
+            return this.name + ",$" + df.format(this.balance);
         }
-        return str;
     }
-    public static void main(String[] args){
-        BankAccount benben = new BankAccount("Benson",15.25);
+
+    public static void main(String[] args) {
+        BankAccount benben = new BankAccount("Benson", 15.25);
         System.out.println(benben.toString());
     }
 
