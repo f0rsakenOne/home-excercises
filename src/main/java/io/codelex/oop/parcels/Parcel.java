@@ -3,7 +3,8 @@ package io.codelex.oop.parcels;
 public class Parcel implements Validatable {
     private final int maxLength = 300;
     private final int minLength = 30;
-    private final float maxWeight = 30.0f;
+    private final float minWeight = 30.0f;
+    private final float minExpressWeight = 15.0f;
     private int xLength;
     private int yLength;
     private int zLength;
@@ -29,10 +30,10 @@ public class Parcel implements Validatable {
         } else if (zLength > maxLength || zLength < minLength) {
             System.out.println("z length is to big/small");
             return false;
-        } else if (!isExpress && weight < 30.0) {
+        } else if (!isExpress && weight < minWeight) {
             System.out.println("weight is too small");
             return false;
-        } else if (isExpress && weight < 15.0) {
+        } else if (isExpress && weight < minExpressWeight) {
             System.out.println("weight is too small for express");
             return false;
         }
