@@ -2,7 +2,7 @@ package io.codelex.practice;
 
 import java.time.LocalDate;
 
-public class exc2 {
+public class Exercise2 {
     public static void main(String[] args) {
         LocalDate date1 = LocalDate.of(2022, 6, 1);
         LocalDate date2 = LocalDate.of(2022, 9, 30);
@@ -14,7 +14,6 @@ public class exc2 {
                 temp2 = temp2.plusDays(14);
             }
             date1 = date1.plusDays(1);
-
         }
     }
 }

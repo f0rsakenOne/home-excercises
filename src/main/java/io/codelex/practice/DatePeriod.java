@@ -3,8 +3,8 @@ package io.codelex.practice;
 import java.time.LocalDate;
 
 public class DatePeriod {
-    LocalDate start;
-    LocalDate end;
+    private LocalDate start;
+    private LocalDate end;
 
     public DatePeriod(LocalDate start, LocalDate end) {
         this.start = start;
@@ -29,7 +29,6 @@ public class DatePeriod {
             }
         }
         return null;
-
     }
 
     private boolean isOverlapping(LocalDate start1, LocalDate end1, LocalDate start2, LocalDate end2) {
