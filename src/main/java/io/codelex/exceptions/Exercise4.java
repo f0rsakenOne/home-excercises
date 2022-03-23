@@ -18,16 +18,17 @@ public class Exercise4 {
     }
 
     static double getInput(String s) throws NonPositiveNumberException {
-        double d = new Double(s).doubleValue();
+        double d = Double.parseDouble(s);
         if (d < 0) {
-            throw new NonPositiveNumberException();
+            throw new NonPositiveNumberException("Number is less than 0");
         }
-        // Throw an NonPositiveNumberException if d is less than 0
         return d;
     }
 
     static class NonPositiveNumberException extends Exception {
-
+        public NonPositiveNumberException(String error) {
+            super(error);
+        }
     }
 
 }
