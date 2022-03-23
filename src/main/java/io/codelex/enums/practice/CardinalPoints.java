@@ -1,6 +1,6 @@
 package io.codelex.enums.practice;
 
-public enum cardinalPoints {
+public enum CardinalPoints {
     NORTH,
     SOUTH,
     EAST,
