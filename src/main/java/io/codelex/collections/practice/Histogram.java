@@ -26,7 +26,7 @@ public class Histogram {
 
     private static int[] createHistogram(String scores) {
         final int[] histogram = new int[11];
-        List<String> scoreList = List.of(scores.split(" "));
+        final List<String> scoreList = List.of(scores.split(" "));
         for (String s : scoreList) {
             histogram[Integer.parseInt(s) / 10] = histogram[Integer.parseInt(s) / 10] + 1;
         }
