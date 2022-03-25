@@ -6,9 +6,6 @@ public class RockPaperScissorsGame {
     private static int playerWins = 0;
     private static int aiWins = 0;
     private static int trials = 0;
-    private static RPS playerHand;
-    private static RPS aiHand;
-    private static boolean quitGame = false;
 
     public static void main(String[] args) {
         System.out.println("Let's play !");
@@ -18,49 +15,60 @@ public class RockPaperScissorsGame {
     }
 
     private static void gameCycle() {
-        while ( !quitGame ) {
+        while ( true ) {
             System.out.println("Rock Paper Scissors!");
-            getPlayerMove();
-            getAiMove();
-            checkWin();
+            RPS playerHand = getPlayerMove();
+            if (playerHand == null) {
+                break;
+            }
+            RPS aiHand = getAiMove();
+            System.out.println("\tMy turn : " + aiHand);
+            checkWin(playerHand, aiHand);
         }
     }
 
     private static void endResults() {
-        System.out.println("Number of trials : " + (trials - 1));
-        System.out.printf("I won %d(%.2f%%)%n", aiWins, ((float) aiWins / (float) (trials - 1) * 100f));
-        System.out.printf("You won %d(%.2f%%)%n", playerWins, ((float) playerWins / (float) (trials - 1) * 100f));
+        System.out.println("Number of trials : " + trials);
+        System.out.printf("I won %d(%.2f%%)%n", aiWins, ((float) aiWins / (float) trials * 100f));
+        System.out.printf("You won %d(%.2f%%)%n", playerWins, ((float) playerWins / (float) trials * 100f));
     }
 
-    private static void getPlayerMove() {
+    private static RPS getPlayerMove() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("\tYour turn (Enter s for scissors, p for paper, r for rock, q to quit):");
         String key = scanner.nextLine();
 
         switch (key.toLowerCase()) {
-            case "s" -> playerHand = RPS.SCISSOR;
-            case "p" -> playerHand = RPS.PAPER;
-            case "r" -> playerHand = RPS.ROCK;
-            case "q" -> quitGame = true;
+            case "s" -> {
+                return RPS.SCISSOR;
+            }
+            case "p" -> {
+                return RPS.PAPER;
+            }
+            case "r" -> {
+                return RPS.ROCK;
+            }
+            case "q" -> {
+                return null;
+            }
             default -> {
                 System.out.println("Invalid input... try again");
-                getPlayerMove();
+                return getPlayerMove();
             }
         }
     }
 
-    private static void getAiMove() {
-        aiHand = RPS.getRandomHand();
-        System.out.println("\tMy turn : " + aiHand);
+    private static RPS getAiMove() {
+        return RPS.getRandomHand();
     }
 
-    private static void checkWin() {
+    private static void checkWin(RPS playerHand, RPS aiHand) {
         if (aiHand == playerHand) {
             System.out.println("\tIt's a tie.");
-        } else if (isPlayerWin()) {
+        } else if (isPlayerWin(playerHand, aiHand)) {
             System.out.println("\tYou won!");
             playerWins++;
-        } else if (isAiWin()) {
+        } else if (isAiWin(playerHand, aiHand)) {
             switch (aiHand) {
                 case PAPER -> System.out.println("\tPaper eats rock, I won!");
                 case SCISSOR -> System.out.println("\tScissor cuts paper, I won!");
@@ -71,13 +79,13 @@ public class RockPaperScissorsGame {
         trials++;
     }
 
-    private static boolean isPlayerWin() {
+    private static boolean isPlayerWin(RPS playerHand, RPS aiHand) {
         return playerHand == RPS.ROCK && aiHand == RPS.SCISSOR ||
                 playerHand == RPS.SCISSOR && aiHand == RPS.PAPER ||
                 playerHand == RPS.PAPER && aiHand == RPS.ROCK;
     }
 
-    private static boolean isAiWin() {
+    private static boolean isAiWin(RPS playerHand, RPS aiHand) {
         return playerHand == RPS.ROCK && aiHand == RPS.PAPER ||
                 playerHand == RPS.SCISSOR && aiHand == RPS.ROCK ||
                 playerHand == RPS.PAPER && aiHand == RPS.SCISSOR;
