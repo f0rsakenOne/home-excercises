@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FlightPlanner {
     private static final Charset charset = Charset.defaultCharset();
@@ -15,24 +16,25 @@ public class FlightPlanner {
     public static void main(String[] args) throws IOException, URISyntaxException {
         Scanner input = new Scanner(System.in);
         final Path path = Paths.get(Histogram.class.getResource(file).toURI());
-        List<String> flights = Files.readAllLines(path, charset);
-
+        final List<String> flights = Files.readAllLines(path, charset);
+        List<String> trip = new ArrayList<>();
         while ( true ) {
-            System.out.println("What would you like to do:\n" +
-                    "To display list of the cities press 1\n" +
-                    "To exit program press #");
+            System.out.println("""
+                    What would you like to do:
+                    To display list of the cities press 1
+                    To exit program press #""");
             String key = input.nextLine();
             if (key.equals("1")) {
                 System.out.println(getStartingLocations(flights));
                 System.out.println("To select a city from which you would like to start press 1");
                 key = input.nextLine();
                 if (key.equals("1")) {
-                    List<String> trip = new ArrayList<>();
                     System.out.println("Select a city");
                     String city = input.nextLine();
-                    String startingCity = city;
+                    final String startingCity = city;
                     do {
-                        System.out.println(getCities(city, flights));
+                        List<String> citiesYouCanFly = getCitiesYouCanFly(city, flights);
+                        System.out.println(citiesYouCanFly);
                         System.out.println("Select a city you want to flight to");
                         String nextCity = input.nextLine();
                         trip.add(city + " -> " + nextCity);
@@ -49,20 +51,15 @@ public class FlightPlanner {
     }
 
     private static Set<String> getStartingLocations(List<String> flights) {
-        Set<String> starting = new HashSet<>();
-        for (String i : flights) {
-            starting.add(i.split("->")[0]);
-        }
-        return starting;
+        return flights.stream()
+                .map((String str) -> str.split("->")[0])
+                .collect(Collectors.toSet());
     }
 
-    private static List<String> getCities(String city, List<String> flights) {
-        List<String> cityFlights = new ArrayList<>();
-        for (String i : flights) {
-            if (i.split("->")[0].contains(city)) {
-                cityFlights.add(i);
-            }
-        }
-        return cityFlights;
+    private static List<String> getCitiesYouCanFly(String city, List<String> flights) {
+        return flights.stream()
+                .filter((String x) -> x.split("->")[0].contains(city))
+                .toList();
     }
+
 }
