@@ -13,22 +13,22 @@ public class Car {
     private EngineType engineType;
 
     public Car(String name, String model, double price,
-               int yearOfManufacture, Manufacturer manufacturer, String engineType) {
+               int yearOfManufacture, Manufacturer manufacturer, EngineType engineType) {
         this.name = name;
         this.model = model;
         this.price = price;
         this.yearOfManufacture = yearOfManufacture;
         this.manufacturer.add(manufacturer);
-        this.engineType = EngineType.valueOf(engineType);
+        this.engineType = engineType;
     }
 
     public Car(String name, String model, double price,
-               int yearOfManufacture, String engineType) {
+               int yearOfManufacture, EngineType engineType) {
         this.name = name;
         this.model = model;
         this.price = price;
         this.yearOfManufacture = yearOfManufacture;
-        this.engineType = EngineType.valueOf(engineType);
+        this.engineType = engineType;
     }
 
     public String getName() {

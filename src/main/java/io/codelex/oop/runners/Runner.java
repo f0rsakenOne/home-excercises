@@ -14,12 +14,11 @@ public enum Runner {
     }
 
     static Runner getFitnesLevel(double time) {
-        Runner runner = BEGINNER;
         if (time >= INTERMEDIATE.minTime && time <= INTERMEDIATE.maxTime) {
-            runner = INTERMEDIATE;
+            return INTERMEDIATE;
         } else if (time > ADVANCED.minTime && time <= ADVANCED.maxTime) {
-            runner = ADVANCED;
+            return ADVANCED;
         }
-        return runner;
+        return BEGINNER;
     }
 }
