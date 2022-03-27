@@ -65,9 +65,9 @@ public class CarService {
         System.out.println(cheapestCar.getName() + " is the most cheapest car (" + cheapestCar.getPrice() + "$)");
     }
 
-    public void getMostManufacturers() {
+    public void getCarWithXOrMoreManufacturers(int x) {
         for (Car car : carService.values()) {
-            if (car.getManufacturer().size() >= 3) {
+            if (car.getManufacturer().size() >= x) {
                 System.out.println(car.getName() + " manufactured by " + car.getManufacturer());
             }
         }
