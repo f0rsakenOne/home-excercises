@@ -1,5 +1,7 @@
 package io.codelex.advancedTest.cards;
 
+import java.math.BigDecimal;
+
 public class CreditCard extends Card {
 
 
@@ -9,15 +11,18 @@ public class CreditCard extends Card {
 
   @Override
   void addMoney(double amount) {
-    super.setBalance(getBalance() + amount);
+    super.setBalance(getBalance().add(BigDecimal.valueOf(amount)));
   }
 
   @Override
   void takeMoney(double amount) throws NotEnoughFundsException {
-    if (getBalance() - amount < 100) {
-      throw new NotEnoughFundsException("Warning: Low funds");
+    if ((getBalance().subtract(BigDecimal.valueOf(amount)).compareTo(BigDecimal.ZERO) < 0)) {
+      throw new NotEnoughFundsException("Error: balance can't be less than 0");
     } else {
-      super.setBalance(getBalance() - amount);
+      super.setBalance(getBalance().subtract(BigDecimal.valueOf(amount)));
+      if (getBalance().compareTo(BigDecimal.valueOf(100)) < 0) {
+        System.out.println("Warning: Low funds");
+      }
     }
   }
 }

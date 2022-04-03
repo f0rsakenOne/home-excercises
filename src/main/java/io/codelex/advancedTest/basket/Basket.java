@@ -18,7 +18,7 @@ public class Basket<T> {
   }
 
   public void removeFromBasket(T item) {
-    if (size < 0) {
+    if (size <= 0) {
       throw new BasketEmptyException("The basket is empty");
     } else {
       basket.remove(item);

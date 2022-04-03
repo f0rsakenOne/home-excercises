@@ -7,7 +7,7 @@ public class BasketTest {
 
   @Test
   public void shouldAddToBasket() {
-    Basket basket = new Basket();
+    Basket<Apple> basket = new Basket();
     Apple apple = new Apple();
     basket.addToBasket(apple);
     Assertions.assertEquals(1, basket.size);
@@ -15,7 +15,7 @@ public class BasketTest {
 
   @Test
   public void shouldRemoveFromBasket() {
-    Basket basket = new Basket();
+    Basket<Apple> basket = new Basket();
     Apple apple = new Apple();
     basket.addToBasket(apple);
     basket.removeFromBasket(apple);
@@ -24,7 +24,7 @@ public class BasketTest {
 
   @Test
   public void shouldThrowErrorWhenRemovingFromZero() {
-    Basket basket = new Basket();
+    Basket<Apple> basket = new Basket();
     Apple apple = new Apple();
     Exception e = Assertions.assertThrows(BasketEmptyException.class,
         () -> basket.removeFromBasket(apple));
@@ -33,7 +33,7 @@ public class BasketTest {
 
   @Test
   public void shouldThrowErrorWhenAddingMoreThanTen() {
-    Basket basket = new Basket();
+    Basket<Apple> basket = new Basket();
     Apple apple1 = new Apple();
     Apple apple2 = new Apple();
     Apple apple3 = new Apple();
@@ -62,23 +62,11 @@ public class BasketTest {
 
   @Test
   public void shouldAddMushrooms() {
-    Basket basket = new Basket();
+    Basket<Mushroom> basket = new Basket();
     Mushroom mushroom = new Mushroom();
     basket.addToBasket(mushroom);
     Assertions.assertEquals(Mushroom.class, basket.basket.get(0).getClass());
   }
-
-  @Test
-  public void cantMixMushroomsAndApples() {
-    Basket basket = new Basket();
-    Mushroom mushroom = new Mushroom();
-    Apple apple = new Apple();
-
-    Exception e = Assertions.assertThrows(CantMixBasketException.class, () -> {
-      basket.addToBasket(mushroom);
-      basket.addToBasket(apple);
-    });
-    Assertions.assertEquals("Can't mix apples and mushrooms", e.getMessage());
-  }
+  
 
 }

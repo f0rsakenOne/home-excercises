@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class partOfTest<T> {
+public class partOfTest {
 
   public static void main(String[] args) {
     List<String> names = Arrays.asList("John", "Peter", "Angelina", "Bravo");
@@ -17,8 +17,8 @@ public class partOfTest<T> {
     System.out.println(evenPercent); //Should print out 0.5 because 50% of numbers are even
   }
 
-  private double partOf(List<T> list, ) {
-
+  private static <T> double partOf(List<T> list, Predicate<T> criteria) {
+    return (double) list.stream().filter(criteria).count() / list.size();
   }
 
 }
