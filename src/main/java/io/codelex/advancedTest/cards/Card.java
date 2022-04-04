@@ -9,11 +9,11 @@ public abstract class Card {
   private String ccv;
   private BigDecimal balance;
 
-  public Card(int number, String fullName, String ccv, double balance) {
+  public Card(int number, String fullName, String ccv, BigDecimal balance) {
     this.number = number;
     this.fullName = fullName;
     this.ccv = ccv;
-    this.balance = BigDecimal.valueOf(balance);
+    this.balance = balance;
   }
 
   public BigDecimal getBalance() {
@@ -24,7 +24,7 @@ public abstract class Card {
     this.balance = balance;
   }
 
-  abstract void addMoney(double amount) throws NotEnoughFundsException;
+  abstract void addMoney(BigDecimal amount) throws NotEnoughFundsException;
 
-  abstract void takeMoney(double amount) throws NotEnoughFundsException;
+  abstract void takeMoney(BigDecimal amount) throws NotEnoughFundsException;
 }
