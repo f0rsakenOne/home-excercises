@@ -41,7 +41,7 @@ public class StreamsExercise {
 
   public static Integer countUsersOlderThen25(List<User> users) {
     return Math.toIntExact(users.stream()
-        .filter((User user) -> user.getAge() > 25)
+        .filter(user -> user.getAge() > 25)
         .count());
   }
 
@@ -166,9 +166,7 @@ public class StreamsExercise {
   }
 
   public static User findOldest(List<User> users) {
-    return users.stream()
-        .reduce(((user, user2) -> user.getAge() > user2.getAge() ? user : user2))
-        .get();
+    return users.stream().max(Comparator.comparingInt(User::getAge)).get();
   }
 
   public static int sumAge(List<User> users) {
@@ -178,10 +176,6 @@ public class StreamsExercise {
   }
 
   public static IntSummaryStatistics ageSummaryStatistics(List<User> users) {
-    long count = users.size();
-    int min = users.stream().map(User::getAge).min(Integer::compare).get();
-    int max = users.stream().map(User::getAge).max(Integer::compare).get();
-    long sum = users.stream().map(User::getAge).reduce(0, Integer::sum);
-    return new IntSummaryStatistics(count, min, max, sum);
+    return users.stream().mapToInt(User::getAge).summaryStatistics();
   }
 }
