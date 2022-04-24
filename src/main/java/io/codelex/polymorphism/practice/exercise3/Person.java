@@ -1,56 +1,53 @@
 package io.codelex.polymorphism.practice.exercise3;
 
 public abstract class Person {
-    private String firstName;
-    private String lastName;
-    private String address;
-    private int id;
 
-    public Person() {
-        this.firstName = "John";
-        this.lastName = "Doe";
-        this.address = "Wall Street";
-        this.id = 123456;
-    }
+  private String firstName;
+  private String lastName;
+  private String address;
+  private int id;
 
-    public Person(String firstName, String lastName, String address, int id) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.id = id;
-    }
+  public Person() {
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public Person(String firstName, String lastName, String address, int id) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.address = address;
+    this.id = id;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public String getAddress() {
-        return address;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+  public String getAddress() {
+    return address;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public void setAddress(String address) {
+    this.address = address;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    abstract void display();
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  abstract void display();
 }
